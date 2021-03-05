@@ -57,6 +57,7 @@
           <span class="close"></span>
           <div class="modal-body">
             <form
+              id="reservation"
               name="reserve"
               action="index.html"
               method="get"
@@ -72,6 +73,7 @@
                   name="first"
                   minlength="2"
                 /><br>
+                <span id=""missFirst></span>
               </div>
               <div
                 class="formData">
@@ -200,11 +202,24 @@
                 <br>
               </div>
               <input
+                id="submit"
                 class="btn-submit"
                 type="submit"
                 class="button"
                 value="C'est parti"
+
               />
+              </div>
+          <div id="confirmation">Merci ! 
+            <br>Votre réservation a été effectué.
+          </div>
+          <input
+            id = "finalCloseBtn"
+            class="button btn-submit"
+            type="button"
+            value="Close"
+          />
+        </div>
             </form>
           </div>
         </div>

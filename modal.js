@@ -17,6 +17,32 @@ const form = document.getElementById("reservation");
 const finalCloseBtn = document.getElementById("finalCloseBtn");
 const confirmation = document.getElementById("confirmation");
 
+// INPUT ET Error
+
+const first = document.getElementById("first");
+const firstError = document.getElementById("firstError");
+
+const last = document.getElementById("last");
+const lastError = document.getElementById("lastError");
+
+const email = document.getElementById("email");
+const emailError = document.getElementById("emailError");
+
+const birthdate = document.getElementById("birthdate");
+const birthdateError = document.getElementById("birthdateError");
+
+const quantity = document.getElementById("quantity");
+const quantityError = document.getElementById("quantityError");
+
+const location2 = document.getElementsByName("location");
+const locationError = document.getElementById("locationError");
+
+const conditions = document.getElementById("checkbox1");
+const conditionsError = document.getElementById("conditionsError");
+
+// REGEX
+const firstAndLastValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -30,4 +56,22 @@ closeBtn.addEventListener("click", closeModal);
 
 function closeModal() {
   modalbg.style.display = "none";
+}
+
+let formOk = false;
+
+function validInput() {
+  // Si le prenom est vide ou qu'il ne match pas avec la regex ou alors qu'il contient moins de 2 carracterres, le message d'erreur s'affiche
+  if (firstAndLastValid.exec(first.value) === null || first.length < 2) {
+    firstError.textContent = "Veuillez entrer 2 caractères minimum";
+    firstError.style.color = "red";
+    firstError.style.fontSize = "10px";
+    first.style.borderColor = "red";
+    first.style.borderWidth = "3px";
+    return formOk === false;
+  } else {
+    firstError.style.display = "none";
+    first.style = "default";
+  }
+  return (formOk = true);
 }

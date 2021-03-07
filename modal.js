@@ -7,7 +7,7 @@ function editNav() {
   }
 }
 
-// DOM Elements
+// DOM
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -17,7 +17,7 @@ const form = document.getElementById("reservation");
 const finalCloseBtn = document.getElementById("finalCloseBtn");
 const confirmation = document.getElementById("confirmation");
 
-// INPUT ET Error
+// INPUT ET ERROR
 
 const first = document.getElementById("first");
 const firstError = document.getElementById("firstError");
@@ -58,7 +58,10 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-let formOk = false;
+finalCloseBtn.style.display = "none";
+confirmation.style.display = "none";
+
+let formValid = false;
 
 function validInput() {
   // Si le prenom est vide ou qu'il ne match pas avec la regex ou alors qu'il contient moins de 2 carracterres, le message d'erreur s'affiche
@@ -68,10 +71,28 @@ function validInput() {
     firstError.style.fontSize = "10px";
     first.style.borderColor = "red";
     first.style.borderWidth = "3px";
-    return formOk === false;
+    return formValid === false;
   } else {
     firstError.style.display = "none";
     first.style = "default";
   }
-  return (formOk = true);
+  return (formValid = true);
+}
+
+function validate(e) {
+  e.preventDefault();
+
+  validInputs();
+
+  if (formValid === true) {
+    form.style.display = "none";
+    confirmation.style.fontSize = "30px";
+    confirmation.style.textAlign = "center";
+
+    finalCloseBtn.style.display = "block";
+    submitBtn.style.display = "none";
+    confirmation.style.display = "flex";
+    closeBtn.addEventListener("click", closeModal);
+    return true;
+  }
 }

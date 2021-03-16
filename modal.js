@@ -12,10 +12,10 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
-const submitBtn = document.querySelector(".btn-submit");
-const form = document.getElementById("reservation");
-const finalCloseBtn = document.getElementById("finalCloseBtn");
-const confirmation = document.getElementById("confirmation");
+const submitForm = document.getElementById("submit");
+const form = document.getElementById("form");
+const successForm = document.getElementById("successForm");
+const successBtn = document.getElementById("successBtn");
 
 // INPUT ET ERROR
 
@@ -40,9 +40,10 @@ const locationError = document.getElementById("locationError");
 const conditions = document.getElementById("checkbox1");
 const conditionsError = document.getElementById("conditionsError");
 
-// REGEX
-const firstAndLastValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
-const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+// // REGEX VALIDATION
+
+// const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -58,41 +59,46 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-finalCloseBtn.style.display = "none";
-confirmation.style.display = "none";
+let formOk = false;
 
-let formValid = false;
+// button and message success hidden
+successForm.style.display = "none";
+successBtn.style.display = "none";
 
-function validInput() {
-  // Si le prenom est vide ou qu'il ne match pas avec la regex ou alors qu'il contient moins de 2 carracterres, le message d'erreur s'affiche
-  if (firstAndLastValid.exec(first.value) === null || first.length < 2) {
+function checkFirst() {
+  if (first.value.length < 2) {
+    console.log("checkFirstIf");
     firstError.textContent = "Veuillez entrer 2 caractères minimum";
     firstError.style.color = "red";
     firstError.style.fontSize = "10px";
     first.style.borderColor = "red";
-    first.style.borderWidth = "3px";
-    return formValid === false;
+    first.style.borderWidth = "2px";
+    formOk = false;
   } else {
+    console.log("checkFirstElse");
     firstError.style.display = "none";
-    first.style = "default";
+    first.style.borderColor = "initial";
+    first.style.borderWidth = "initial";
+    formOk = true;
   }
-  return (formValid = true);
 }
 
-function validate(e) {
-  e.preventDefault();
+form.addEventListener("submit", validate);
 
-  validInputs();
+function validate(event) {
+  event.preventDefault();
 
-  if (formValid === true) {
+  checkFirst();
+
+  console.log(formOk);
+
+  if (formOk === true) {
     form.style.display = "none";
-    confirmation.style.fontSize = "30px";
-    confirmation.style.textAlign = "center";
-
-    finalCloseBtn.style.display = "block";
-    submitBtn.style.display = "none";
-    confirmation.style.display = "flex";
-    closeBtn.addEventListener("click", closeModal);
-    return true;
+    successForm.style.fontSize = "50px";
+    successForm.style.minHeight = "300px";
+    successForm.style.textAlign = "center";
+    successBtn.style.display = "flex";
+    successForm.style.display = "flex";
+    successBtn.addEventListener("click", closeModal);
   }
 }

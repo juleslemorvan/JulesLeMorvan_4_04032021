@@ -83,12 +83,29 @@ function checkFirst() {
   }
 }
 
+function checkLast() {
+  if (last.value.length < 2) {
+    lastError.textContent = "Veuillez entrer 2 caractères minimum";
+    lastError.style.color = "red";
+    lastError.style.fontSize = "10px";
+    last.style.borderColor = "red";
+    last.style.borderWidth = "2px";
+    formOk = false;
+  } else {
+    lastError.style.display = "none";
+    last.style.borderColor = "initial";
+    last.style.borderWidth = "initial";
+    formOk = true;
+  }
+}
+
 form.addEventListener("submit", validate);
 
 function validate(event) {
   event.preventDefault();
 
   checkFirst();
+  checkLast();
 
   console.log(formOk);
 

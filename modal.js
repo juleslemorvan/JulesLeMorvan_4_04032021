@@ -98,6 +98,22 @@ function checkLast() {
     formOk = true;
   }
 }
+function checkEmail() {
+  const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+  if (emailValid.exec(email.value) === null) {
+    emailError.textContent = "Veuillez Nous fournir une adresse Email valide";
+    emailError.style.color = "red";
+    emailError.style.fontSize = "10px";
+    email.style.borderColor = "red";
+    email.style.borderWidth = "2px";
+    formOk = false;
+  } else {
+    emailError.style.display = "none";
+    email.style.borderColor = "initial";
+    email.style.borderWidth = "initial";
+    formOk = true;
+  }
+}
 
 form.addEventListener("submit", validate);
 
@@ -106,6 +122,7 @@ function validate(event) {
 
   checkFirst();
   checkLast();
+  checkEmail();
 
   console.log(formOk);
 

@@ -40,10 +40,6 @@ const locationError = document.getElementById("locationError");
 const conditions = document.getElementById("checkbox1");
 const conditionsError = document.getElementById("conditionsError");
 
-// // REGEX VALIDATION
-
-// const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -115,6 +111,71 @@ function checkEmail() {
   }
 }
 
+function checkBirthdate() {
+  if (!birthdate.value) {
+    birthdateError.textContent = "Veuillez entrer votre date de naissance";
+    birthdateError.style.color = "red";
+    birthdateError.style.fontSize = "10px";
+    birthdate.style.borderColor = "red";
+    birthdate.style.borderWidth = "2px";
+    formOk = false;
+  } else {
+    birthdateError.style.display = "none";
+    birthdate.style.borderColor = "initial";
+    birthdate.style.borderWidth = "initial";
+    formOk = true;
+  }
+}
+function checkQuantity() {
+  if (quantity.value === "" || isNaN(quantity.value)) {
+    quantityError.textContent = "Veuillez completer ce champ";
+    quantityError.style.color = "red";
+    quantityError.style.fontSize = "10px";
+    quantity.style.borderColor = "red";
+    quantity.style.borderWidth = "2px";
+    return formOk === false;
+  } else {
+    quantityError.style.display = "none";
+    quantity.style = "default";
+  }
+}
+function checkLocation() {
+  if (
+    !(
+      location2[0].checked ||
+      location2[1].checked ||
+      location2[2].checked ||
+      location2[3].checked ||
+      location2[4].checked ||
+      location2[5].checked
+    )
+  ) {
+    locationError.textContent = "Veuillez cocher une case au minimum";
+    locationError.style.color = "red";
+    locationError.style.fontSize = "10px";
+    return formOk === false;
+  } else {
+    locationError.style.display = "none";
+    location2.style = "default";
+  }
+}
+
+function checkConditions() {
+  if (!conditions.checked) {
+    conditionsError.textContent =
+      "Veuillez accepter les conditions d'utilisations";
+    conditionsError.style.color = "red";
+    conditionsError.style.fontSize = "10px";
+    conditions.style.borderColor = "red";
+    conditions.style.borderWidth = "2px";
+    return formOk === false;
+  } else {
+    conditionsError.style.display = "none";
+    conditions.style = "default";
+  }
+  return (formOk = true);
+}
+
 form.addEventListener("submit", validate);
 
 function validate(event) {
@@ -123,6 +184,10 @@ function validate(event) {
   checkFirst();
   checkLast();
   checkEmail();
+  checkBirthdate();
+  checkQuantity();
+  checkLocation();
+  checkConditions();
 
   console.log(formOk);
 

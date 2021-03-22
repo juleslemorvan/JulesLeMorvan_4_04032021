@@ -63,7 +63,6 @@ successBtn.style.display = "none";
 
 function checkFirst() {
   if (first.value.length < 2) {
-    console.log("checkFirstIf");
     firstError.textContent = "Veuillez entrer 2 caractères minimum";
     firstError.style.color = "red";
     firstError.style.fontSize = "10px";
@@ -71,7 +70,6 @@ function checkFirst() {
     first.style.borderWidth = "2px";
     formOk = false;
   } else {
-    console.log("checkFirstElse");
     firstError.style.display = "none";
     first.style.borderColor = "initial";
     first.style.borderWidth = "initial";
@@ -137,6 +135,7 @@ function checkQuantity() {
   } else {
     quantityError.style.display = "none";
     quantity.style = "default";
+    formOK = true;
   }
 }
 function checkLocation() {
@@ -157,6 +156,7 @@ function checkLocation() {
   } else {
     locationError.style.display = "none";
     location2.style = "default";
+    formOK = true;
   }
 }
 
@@ -188,8 +188,6 @@ function validate(event) {
   checkQuantity();
   checkLocation();
   checkConditions();
-
-  console.log(formOk);
 
   if (formOk === true) {
     form.style.display = "none";

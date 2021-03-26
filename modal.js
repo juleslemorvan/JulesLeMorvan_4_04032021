@@ -135,7 +135,7 @@ function checkQuantity() {
   } else {
     quantityError.style.display = "none";
     quantity.style = "default";
-    formOK = true;
+    formOk = true;
   }
 }
 function checkLocation() {
@@ -156,7 +156,7 @@ function checkLocation() {
   } else {
     locationError.style.display = "none";
     location2.style = "default";
-    formOK = true;
+    formOk = true;
   }
 }
 
@@ -173,7 +173,7 @@ function checkConditions() {
     conditionsError.style.display = "none";
     conditions.style = "default";
   }
-  return (formOk = true);
+  return formOk === true;
 }
 
 form.addEventListener("submit", validate);
@@ -182,12 +182,19 @@ function validate(event) {
   event.preventDefault();
 
   checkFirst();
+  console.log(formOk);
   checkLast();
+  console.log(formOk);
   checkEmail();
+  console.log(formOk);
   checkBirthdate();
+  console.log(formOk);
   checkQuantity();
+  console.log(formOk);
   checkLocation();
+  console.log(formOk);
   checkConditions();
+  console.log(formOk);
 
   if (formOk === true) {
     form.style.display = "none";

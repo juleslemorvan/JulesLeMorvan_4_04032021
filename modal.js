@@ -55,7 +55,7 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-let formOk = false;
+let formOk = true;
 
 // button and message success hidden
 successForm.style.display = "none";
@@ -73,7 +73,6 @@ function checkFirst() {
     firstError.style.display = "none";
     first.style.borderColor = "initial";
     first.style.borderWidth = "initial";
-    formOk = true;
   }
 }
 
@@ -89,7 +88,6 @@ function checkLast() {
     lastError.style.display = "none";
     last.style.borderColor = "initial";
     last.style.borderWidth = "initial";
-    formOk = true;
   }
 }
 function checkEmail() {
@@ -105,7 +103,6 @@ function checkEmail() {
     emailError.style.display = "none";
     email.style.borderColor = "initial";
     email.style.borderWidth = "initial";
-    formOk = true;
   }
 }
 
@@ -121,7 +118,6 @@ function checkBirthdate() {
     birthdateError.style.display = "none";
     birthdate.style.borderColor = "initial";
     birthdate.style.borderWidth = "initial";
-    formOk = true;
   }
 }
 function checkQuantity() {
@@ -131,11 +127,10 @@ function checkQuantity() {
     quantityError.style.fontSize = "10px";
     quantity.style.borderColor = "red";
     quantity.style.borderWidth = "2px";
-    return formOk === false;
+    formOk = false;
   } else {
     quantityError.style.display = "none";
     quantity.style = "default";
-    formOk = true;
   }
 }
 function checkLocation() {
@@ -152,11 +147,10 @@ function checkLocation() {
     locationError.textContent = "Veuillez cocher une case au minimum";
     locationError.style.color = "red";
     locationError.style.fontSize = "10px";
-    return formOk === false;
+    formOk = false;
   } else {
     locationError.style.display = "none";
     location2.style = "default";
-    formOk = true;
   }
 }
 
@@ -168,19 +162,18 @@ function checkConditions() {
     conditionsError.style.fontSize = "10px";
     conditions.style.borderColor = "red";
     conditions.style.borderWidth = "2px";
-    return formOk === false;
+    formOk = false;
   } else {
     conditionsError.style.display = "none";
     conditions.style = "default";
   }
-  return formOk === true;
 }
 
 form.addEventListener("submit", validate);
 
 function validate(event) {
   event.preventDefault();
-
+  formOk = true;
   checkFirst();
   console.log(formOk);
   checkLast();
@@ -196,7 +189,7 @@ function validate(event) {
   checkConditions();
   console.log(formOk);
 
-  if (formOk === true) {
+  if (formOk) {
     form.style.display = "none";
     successForm.style.fontSize = "50px";
     successForm.style.minHeight = "300px";

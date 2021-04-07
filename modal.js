@@ -61,6 +61,7 @@ let formOk = true;
 successForm.style.display = "none";
 successBtn.style.display = "none";
 
+// Function input firstName must contain at least 2 characters
 function checkFirst() {
   if (first.value.length < 2) {
     firstError.textContent = "Veuillez entrer 2 caractères minimum";
@@ -76,6 +77,7 @@ function checkFirst() {
   }
 }
 
+// Function input lastName must contain at least 2 characters
 function checkLast() {
   if (last.value.length < 2) {
     lastError.textContent = "Veuillez entrer 2 caractères minimum";
@@ -90,6 +92,7 @@ function checkLast() {
     last.style.borderWidth = "initial";
   }
 }
+// Function input email
 function checkEmail() {
   const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
   if (emailValid.exec(email.value) === null) {
@@ -106,6 +109,8 @@ function checkEmail() {
   }
 }
 
+//Function input Birthdate
+
 function checkBirthdate() {
   if (!birthdate.value) {
     birthdateError.textContent = "Veuillez entrer votre date de naissance";
@@ -120,6 +125,9 @@ function checkBirthdate() {
     birthdate.style.borderWidth = "initial";
   }
 }
+
+//functtion input quantity
+
 function checkQuantity() {
   if (quantity.value === "" || isNaN(quantity.value)) {
     quantityError.textContent = "Veuillez completer ce champ";
@@ -133,6 +141,9 @@ function checkQuantity() {
     quantity.style = "default";
   }
 }
+
+// function input location checkbox
+
 function checkLocation() {
   if (
     !(
@@ -154,6 +165,8 @@ function checkLocation() {
   }
 }
 
+//function condition CGU
+
 function checkConditions() {
   if (!conditions.checked) {
     conditionsError.textContent =
@@ -169,25 +182,29 @@ function checkConditions() {
   }
 }
 
+//function Validate form
+
 form.addEventListener("submit", validate);
 
 function validate(event) {
   event.preventDefault();
   formOk = true;
+
   checkFirst();
-  console.log(formOk);
+
   checkLast();
-  console.log(formOk);
+
   checkEmail();
-  console.log(formOk);
+
   checkBirthdate();
-  console.log(formOk);
+
   checkQuantity();
-  console.log(formOk);
+
   checkLocation();
-  console.log(formOk);
+
   checkConditions();
-  console.log(formOk);
+
+  //display the success form
 
   if (formOk) {
     form.style.display = "none";

@@ -98,7 +98,7 @@ function checkLast() {
 function checkEmail() {
   const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
   // test@test.com (valid)
-  if (emailValid.exec(email.value) === null) {
+  if (emailValid.exec(email.value.trim()) === null) {
     emailError.textContent = "Veuillez Nous fournir une adresse Email valide";
     emailError.style.color = "red";
     emailError.style.fontSize = "10px";
@@ -132,7 +132,11 @@ function checkBirthdate() {
 //function input quantity
 
 function checkQuantity() {
-  if (quantity.value === "" || isNaN(quantity.value)) {
+  const quantityValid = /^[0-9]*$/;
+  if (
+    quantityValid.exec(quantity.value.trim()) === null ||
+    quantity.value == ""
+  ) {
     quantityError.textContent = "Veuillez completer ce champ";
     quantityError.style.color = "red";
     quantityError.style.fontSize = "10px";

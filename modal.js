@@ -63,7 +63,8 @@ successBtn.style.display = "none";
 
 // Function input firstName must contain at least 2 characters
 function checkFirst() {
-  if (first.value.length < 2) {
+  const nameValid = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
+  if (nameValid.exec(first.value.trim()) === null || first.length < 2) {
     firstError.textContent = "Veuillez entrer 2 caractères minimum";
     firstError.style.color = "red";
     firstError.style.fontSize = "10px";
@@ -79,7 +80,8 @@ function checkFirst() {
 
 // Function input lastName must contain at least 2 characters
 function checkLast() {
-  if (last.value.length < 2) {
+  const nameValid = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
+  if (nameValid.exec(last.value.trim()) === null || last.length < 2) {
     lastError.textContent = "Veuillez entrer 2 caractères minimum";
     lastError.style.color = "red";
     lastError.style.fontSize = "10px";
@@ -95,6 +97,7 @@ function checkLast() {
 // Function input email
 function checkEmail() {
   const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+  // test@test.com (valid)
   if (emailValid.exec(email.value) === null) {
     emailError.textContent = "Veuillez Nous fournir une adresse Email valide";
     emailError.style.color = "red";
@@ -126,7 +129,7 @@ function checkBirthdate() {
   }
 }
 
-//functtion input quantity
+//function input quantity
 
 function checkQuantity() {
   if (quantity.value === "" || isNaN(quantity.value)) {

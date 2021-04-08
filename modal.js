@@ -20,25 +20,14 @@ const successBtn = document.getElementById("successBtn");
 // INPUT ET ERROR
 
 const first = document.getElementById("first");
-const firstError = document.getElementById("firstError");
-
 const last = document.getElementById("last");
-const lastError = document.getElementById("lastError");
-
 const email = document.getElementById("email");
-const emailError = document.getElementById("emailError");
-
 const birthdate = document.getElementById("birthdate");
-const birthdateError = document.getElementById("birthdateError");
-
 const quantity = document.getElementById("quantity");
-const quantityError = document.getElementById("quantityError");
-
 const location2 = document.getElementsByName("location");
-const locationError = document.getElementById("locationError");
-
 const conditions = document.getElementById("checkbox1");
-const conditionsError = document.getElementById("conditionsError");
+
+const error = document.querySelectorAll("[data-error]");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -65,16 +54,14 @@ successBtn.style.display = "none";
 function checkFirst() {
   const nameValid = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
   if (nameValid.exec(first.value.trim()) === null || first.length < 2) {
-    firstError.textContent = "Veuillez entrer 2 caractères minimum";
-    firstError.style.color = "red";
-    firstError.style.fontSize = "10px";
-    first.style.borderColor = "red";
-    first.style.borderWidth = "2px";
+    first.parentElement.setAttribute("data-error-visible", "true");
+    first.parentElement.setAttribute(
+      "data-error",
+      "Veuillez renseigner un Prénom valide (2 carracteres min)"
+    );
     formOk = false;
   } else {
-    firstError.style.display = "none";
-    first.style.borderColor = "initial";
-    first.style.borderWidth = "initial";
+    first.parentElement.setAttribute("data-error-visible", "false");
   }
 }
 
@@ -82,16 +69,14 @@ function checkFirst() {
 function checkLast() {
   const nameValid = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
   if (nameValid.exec(last.value.trim()) === null || last.length < 2) {
-    lastError.textContent = "Veuillez entrer 2 caractères minimum";
-    lastError.style.color = "red";
-    lastError.style.fontSize = "10px";
-    last.style.borderColor = "red";
-    last.style.borderWidth = "2px";
+    last.parentElement.setAttribute("data-error-visible", "true");
+    last.parentElement.setAttribute(
+      "data-error",
+      "Veuillez renseigner un Nom valide (2 carracteres min)"
+    );
     formOk = false;
   } else {
-    lastError.style.display = "none";
-    last.style.borderColor = "initial";
-    last.style.borderWidth = "initial";
+    first.parentElement.setAttribute("data-error-visible", "false");
   }
 }
 // Function input email
@@ -99,16 +84,14 @@ function checkEmail() {
   const emailValid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
   // test@test.com (valid)
   if (emailValid.exec(email.value.trim()) === null) {
-    emailError.textContent = "Veuillez Nous fournir une adresse Email valide";
-    emailError.style.color = "red";
-    emailError.style.fontSize = "10px";
-    email.style.borderColor = "red";
-    email.style.borderWidth = "2px";
+    email.parentElement.setAttribute("data-error-visible", "true");
+    email.parentElement.setAttribute(
+      "data-error",
+      "Veuillez renseigner un Email valide"
+    );
     formOk = false;
   } else {
-    emailError.style.display = "none";
-    email.style.borderColor = "initial";
-    email.style.borderWidth = "initial";
+    email.parentElement.setAttribute("data-error-visible", "false");
   }
 }
 
@@ -116,16 +99,14 @@ function checkEmail() {
 
 function checkBirthdate() {
   if (!birthdate.value) {
-    birthdateError.textContent = "Veuillez entrer votre date de naissance";
-    birthdateError.style.color = "red";
-    birthdateError.style.fontSize = "10px";
-    birthdate.style.borderColor = "red";
-    birthdate.style.borderWidth = "2px";
+    birthdate.parentElement.setAttribute("data-error-visible", "true");
+    birthdate.parentElement.setAttribute(
+      "data-error",
+      "Veuillez renseigner votre date de naissance"
+    );
     formOk = false;
   } else {
-    birthdateError.style.display = "none";
-    birthdate.style.borderColor = "initial";
-    birthdate.style.borderWidth = "initial";
+    birthdate.parentElement.setAttribute("data-error-visible", "false");
   }
 }
 
@@ -137,15 +118,14 @@ function checkQuantity() {
     quantityValid.exec(quantity.value.trim()) === null ||
     quantity.value == ""
   ) {
-    quantityError.textContent = "Veuillez completer ce champ";
-    quantityError.style.color = "red";
-    quantityError.style.fontSize = "10px";
-    quantity.style.borderColor = "red";
-    quantity.style.borderWidth = "2px";
+    quantity.parentElement.setAttribute("data-error-visible", "true");
+    quantity.parentElement.setAttribute(
+      "data-error",
+      "Veuillez remplir ce champs"
+    );
     formOk = false;
   } else {
-    quantityError.style.display = "none";
-    quantity.style = "default";
+    quantity.parentElement.setAttribute("data-error-visible", "false");
   }
 }
 
@@ -162,13 +142,14 @@ function checkLocation() {
       location2[5].checked
     )
   ) {
-    locationError.textContent = "Veuillez cocher une case au minimum";
-    locationError.style.color = "red";
-    locationError.style.fontSize = "10px";
+    location.parentElement.setAttribute("data-error-visible", "true");
+    location.parentElement.setAttribute(
+      "data-error",
+      "Veuillez cocher au moins une case"
+    );
     formOk = false;
   } else {
-    locationError.style.display = "none";
-    location2.style = "default";
+    location.parentElement.setAttribute("data-error-visible", "false");
   }
 }
 
@@ -176,16 +157,14 @@ function checkLocation() {
 
 function checkConditions() {
   if (!conditions.checked) {
-    conditionsError.textContent =
-      "Veuillez accepter les conditions d'utilisations";
-    conditionsError.style.color = "red";
-    conditionsError.style.fontSize = "10px";
-    conditions.style.borderColor = "red";
-    conditions.style.borderWidth = "2px";
+    conditions.parentElement.setAttribute("data-error-visible", "true");
+    conditions.parentElement.setAttribute(
+      "data-error",
+      "Veuillez accepter les conditions"
+    );
     formOk = false;
   } else {
-    conditionsError.style.display = "none";
-    conditions.style = "default";
+    conditions.parentElement.setAttribute("data-error-visible", "false");
   }
 }
 

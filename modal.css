@@ -480,6 +480,15 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+/* Correction responsif */
+
+@media screen and (max-width: 950px) {
+  .hero-headline {
+    font-size: 5rem;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;

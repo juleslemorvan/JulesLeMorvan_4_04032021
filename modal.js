@@ -25,6 +25,7 @@ const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const location2 = document.getElementsByName("location");
+const place = document.getElementById("place");
 const conditions = document.getElementById("checkbox1");
 
 const error = document.querySelectorAll("[data-error]");
@@ -53,7 +54,10 @@ successBtn.style.display = "none";
 // Function input firstName must contain at least 2 characters
 function checkFirst() {
   const nameValid = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
-  if (nameValid.exec(first.value.trim()) === null || first.length < 2) {
+  if (
+    nameValid.exec(first.value.trim()) === null ||
+    first.value.trim().length < 2
+  ) {
     first.parentElement.setAttribute("data-error-visible", "true");
     first.parentElement.setAttribute(
       "data-error",
@@ -68,7 +72,10 @@ function checkFirst() {
 // Function input lastName must contain at least 2 characters
 function checkLast() {
   const nameValid = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
-  if (nameValid.exec(last.value.trim()) === null || last.length < 2) {
+  if (
+    nameValid.exec(last.value.trim()) === null ||
+    last.value.trim().length < 2
+  ) {
     last.parentElement.setAttribute("data-error-visible", "true");
     last.parentElement.setAttribute(
       "data-error",
@@ -95,9 +102,24 @@ function checkEmail() {
   }
 }
 
-//Function input Birthdate
+var date_diff_indays = function (date1, date2) {
+  dt1 = new Date(date1);
+  dt2 = new Date(date2);
+  return Math.floor(
+    (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
+      Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
+      (1000 * 60 * 60 * 24)
+  );
+};
 
 function checkBirthdate() {
+  let currentDate = new Date();
+  // user birth year
+  let userBirthDate = new Date(birthdate.value);
+  console.log(currentDate);
+  console.log(userBirthDate);
+  console.log(date_diff_indays(userBirthDate, currentDate) / 365);
+
   if (!birthdate.value) {
     birthdate.parentElement.setAttribute("data-error-visible", "true");
     birthdate.parentElement.setAttribute(
@@ -105,12 +127,20 @@ function checkBirthdate() {
       "Veuillez renseigner votre date de naissance"
     );
     formOk = false;
+  } else if (date_diff_indays(userBirthDate, currentDate) / 365.25 < 18) {
+    birthdate.parentElement.setAttribute("data-error-visible", "true");
+    birthdate.parentElement.setAttribute("data-error", "Vous etes mineurs");
+    formOk = false;
+  } else if (date_diff_indays(userBirthDate, currentDate) / 365.25 > 100) {
+    birthdate.parentElement.setAttribute("data-error-visible", "true");
+    birthdate.parentElement.setAttribute("data-error", "trop vieux");
+    formOk = false;
   } else {
     birthdate.parentElement.setAttribute("data-error-visible", "false");
   }
 }
 
-//function input quantity
+//function input quantity (0-9)
 
 function checkQuantity() {
   const quantityValid = /^[0-9]*$/;
@@ -142,14 +172,11 @@ function checkLocation() {
       location2[5].checked
     )
   ) {
-    location.parentElement.setAttribute("data-error-visible", "true");
-    location.parentElement.setAttribute(
-      "data-error",
-      "Veuillez cocher au moins une case"
-    );
+    place.setAttribute("data-error-visible", "true");
+    place.setAttribute("data-error", "Veuillez cocher au moins une case");
     formOk = false;
   } else {
-    location.parentElement.setAttribute("data-error-visible", "false");
+    place.setAttribute("data-error-visible", "false");
   }
 }
 

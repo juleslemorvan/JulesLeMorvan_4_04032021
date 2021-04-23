@@ -116,9 +116,6 @@ function checkBirthdate() {
   let currentDate = new Date();
   // user birth year
   let userBirthDate = new Date(birthdate.value);
-  console.log(currentDate);
-  console.log(userBirthDate);
-  console.log(date_diff_indays(userBirthDate, currentDate) / 365);
 
   if (!birthdate.value) {
     birthdate.parentElement.setAttribute("data-error-visible", "true");
@@ -133,7 +130,7 @@ function checkBirthdate() {
     formOk = false;
   } else if (date_diff_indays(userBirthDate, currentDate) / 365.25 > 100) {
     birthdate.parentElement.setAttribute("data-error-visible", "true");
-    birthdate.parentElement.setAttribute("data-error", "trop vieux");
+    birthdate.parentElement.setAttribute("data-error", " vous êtes trop vieux");
     formOk = false;
   } else {
     birthdate.parentElement.setAttribute("data-error-visible", "false");

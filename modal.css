@@ -68,7 +68,7 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 840px) {
   .topnav a {
     display: none;
   }
@@ -78,7 +78,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 840px) {
   .topnav.responsive {
     position: relative;
   }
@@ -101,7 +101,6 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
   }
 }
 
@@ -483,6 +482,12 @@ footer {
 
 /* Correction responsif */
 
+@media screen and (max-width: 1109px) {
+  .header-logo img {
+    font-size: 15px;
+  }
+}
+
 @media screen and (max-width: 950px) {
   .hero-headline {
     font-size: 5rem;
@@ -525,6 +530,53 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .hero-headline {
+    font-size: 3.4rem;
+    overflow: hidden;
+  }
+  .hero-text {
+    overflow: hidden;
+    font-size: 1.5rem;
+    word-wrap: break-word;
+  }
+}
+
+@media screen and (max-width: 553px) {
+  .hero-headline {
+    font-size: 2.7rem;
+  }
+  .hero-text {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 465px) {
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+  .hero-text {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 405px) {
+  .hero-content {
+    min-width: initial;
+  }
+  .hero-headline {
+    font-size: 27px;
+  }
+  .hero-text {
+    font-size: 17px;
+  }
+}
+@media screen and (max-width: 342px) {
+  .header-logo img {
+    width: 180px;
+    margin-top: 10px;
+    margin-left: 10px;
   }
 }
 

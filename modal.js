@@ -51,7 +51,7 @@ let formOk = true;
 successForm.style.display = "none";
 successBtn.style.display = "none";
 
-// Function input firstName must contain at least 2 characters
+// Function input firstName must contain at least 2 characters and match the regex
 function checkFirst() {
   const nameValid = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
   if (
@@ -69,7 +69,7 @@ function checkFirst() {
   }
 }
 
-// Function input lastName must contain at least 2 characters
+// Function input lastName must contain at least 2 characters and match the regex
 function checkLast() {
   const nameValid = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
   if (

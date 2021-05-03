@@ -482,9 +482,18 @@ footer {
 
 /* Correction responsif */
 
-@media screen and (max-width: 1109px) {
-  .header-logo img {
-    font-size: 15px;
+@media screen and (max-width: 1109px) and (min-width: 841px) {
+  .header-logo {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .main-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 }
 
